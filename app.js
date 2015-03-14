@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var app = express();
-app.set('port', 3000 || process.env.PORT);
+app.set('port', process.env.PORT || 3000);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
