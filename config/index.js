@@ -1,4 +1,5 @@
 var env = require('../env');
+console.log(env);
 
 module.exports = {
   db: {
