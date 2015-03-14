@@ -4,5 +4,5 @@ exports.ping = function(req, res, next) {
 };
 
 exports.sendVideo = function(req, res, next) {
-	console.log('sendVideo', req.params)
+	console.log('sendVideo', req)
 }
