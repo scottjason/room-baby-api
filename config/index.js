@@ -1,5 +1,6 @@
-var env = require('../env');
-console.log(env);
+if(!process.env.MONGOLAB_URI) {
+	var env = require('../env');
+}
 
 module.exports = {
   db: {
