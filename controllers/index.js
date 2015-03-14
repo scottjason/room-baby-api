@@ -8,6 +8,7 @@ exports.videoStatus = function(req, res, next) {
 	 var archiveId = req.body.id;	 
 	 var size = req.body.size;
 	 var duration = req.body.duration;
+	 console.log(res);
 	 res.redirect('http://localhost:300/session/' + sessionId + '/' + archiveId + '/' + size + '/' + duration);
   }
   else {
