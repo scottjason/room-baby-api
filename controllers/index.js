@@ -2,7 +2,7 @@ exports.ping = function(req, res, next) {
   res.render('index');
 };
 
-exports.getVideoStatus = function(req, res, next) {
+exports.videoStatus = function(req, res, next) {
   if(req.body.status === 'uploaded') {
 	 var sessionId = req.body.sessionId;
 	 var archiveId = req.body.id;	 
