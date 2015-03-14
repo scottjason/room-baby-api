@@ -5,7 +5,7 @@ var videoSchema = new mongoose.Schema({
 	url: String,
 	status: String,
 	name: String,
-	archiveId: String,	
+	archiveId: String,
 	sessionId: String,
 	partnerId: Number,
 	createdAt: Date,

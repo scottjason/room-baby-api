@@ -1,6 +1,6 @@
-if(!process.env.MONGOLAB_URI) {
-	var env = require('../env');
-}
+var env;
+
+if(!process.env.MONGOLAB_URI) env = require('../env');
 
 module.exports = {
   db: {
