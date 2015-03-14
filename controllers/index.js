@@ -24,5 +24,5 @@ exports.getVideoStatus = function(req, res, next) {
 	 sendVideo(videoObj);
 	 return;
   }
-  res.status(200).end();
+  // res.status(200).end();
 };
