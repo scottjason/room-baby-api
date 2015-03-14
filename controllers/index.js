@@ -11,6 +11,6 @@ exports.videoStatus = function(req, res, next) {
 	 res.redirect('http://localhost:300/session/' + sessionId + '/' + archiveId + '/' + size + '/' + duration);
   }
   else {
- 	 next();
+  	res.json();
   };
 };
