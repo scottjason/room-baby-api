@@ -13,7 +13,7 @@ exports.videoStatus = function(req, res, next) {
     video.archiveId = archiveId;
     video.url = video.generateUrl(partnerId, archiveId);
   	video.save(function(err, savedVideo){
-  	  	res.status(200).end();
+  	  res.status(200).end();
   	});
   }
   else {
