@@ -15,7 +15,7 @@ var videoSchema = new mongoose.Schema({
 });
 
 videoSchema.methods.generateUrl = function(partnerId, archiveId) {
-	return config.aws.base + config.aws.buckets.videoBucket + partnerId + '/' + archiveId + '.mp4';
+	return config.aws.base + config.aws.buckets.videoBucket + partnerId + '/' + archiveId + '/archive.mp4';
 };
 
 module.exports = mongoose.model('Video', videoSchema);
