@@ -1,13 +1,7 @@
 var request = require('request');
 
 var sendVideo = function(videoObj) {
-	var opts = {
-	 uri: "http://localhost:3000/session/video-ready",
-  	 method: "POST",
-  	 body: videoObj,
-  	 json: true
-  	}
-	
+  var opts = { method: 'post', body: videoObj, json: true, url: 'http://localhost:3000/session/video-ready' };
   request(opts, function(err, res, body){
 	 console.log(err || res.statusCode);
   });
