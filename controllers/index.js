@@ -13,16 +13,14 @@ exports.ping = function(req, res, next) {
 };
 
 exports.getVideoStatus = function(req, res, next) {
-	console.log(req.status);
-console.log('getVideoStatus', req.body);
-console.log(req.body.status.toString() === 'uploaded');
   if(req.body.status.toString() === 'uploaded') {
 	var videoObj = {};
 	 videoObj.archiveId = req.body.id;
 	 videoObj.sessionId = req.body.sessionId;
 	 videoObj.size = req.body.size;
 	 videoObj.duration = req.body.duration;
-	 res.status(200).json();
+	 res.status(200).end();
 	 sendVideo(videoObj);
   }
+  res.status(200).end();
 };
