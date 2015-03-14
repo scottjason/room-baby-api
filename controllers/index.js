@@ -7,8 +7,8 @@ exports.ping = function(req, res, next) {
 exports.videoStatus = function(req, res, next) {
   if(req.body.status === 'uploaded') {
   	console.log('reqbody', req.body);
-  	new Video(req.body)
-  	  .save(function(err, video){
+  	
+  	new Video(req.body).save(function(err, video){
   	  	console.log('saved video', video);
   	  	res.status(200).end();
   	  })

@@ -12,9 +12,8 @@
     "debug": "~2.1.1",
     "ejs": "~2.2.3",
     "express": "~4.11.1",
+    "mongoose": "^3.8.25",
     "morgan": "~1.5.1",
-    "request": "^2.53.0",
-    "request-json": "^0.5.2",
     "serve-favicon": "~2.2.0",
     "superagent": "^1.1.0"
   }

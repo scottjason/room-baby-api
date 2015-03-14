@@ -4,11 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var timeout = require('connect-timeout');
+var database = require('./config/database');
+
+database.connect()
 
 var app = express();
-app.set('port', process.env.PORT || 3000);
 
+app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');;
@@ -30,12 +32,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500).json(err || new Error('server error'));
 });
 
-// app.use(timeout(120000));
-// app.use(haltOnTimedout);
-
-// function haltOnTimedout(req, res, next){
-//   if (!req.timedout) next();
-// }
 
 app.listen(app.get('port'), function(){
   console.log('Room Baby Videos Api Listening on', app.get('port'));
