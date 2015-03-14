@@ -15,6 +15,6 @@ module.exports = {
     base: 'https://s3-us-west-1.amazonaws.com/',
     buckets: {
   	  videoBucket: 'room-baby-videos/'
-  	}
+    }
   }
 }
