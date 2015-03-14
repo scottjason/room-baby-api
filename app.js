@@ -30,8 +30,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500).json(err || new Error('server error'));
 });
 
-// app.use(timeout(120000));
-// app.use(haltOnTimedout);
+app.use(timeout(120000));
+app.use(haltOnTimedout);
 
 function haltOnTimedout(req, res, next){
   if (!req.timedout) next();
