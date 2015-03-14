@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var videoSchema = new mongoose.Schema({
 	status: String,
 	name: String,
+	archiveId: String,	
 	sessionId: String,
 	partnerId: Number,
 	createdAt: Date,
