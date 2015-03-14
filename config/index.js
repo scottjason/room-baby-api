@@ -12,9 +12,9 @@ module.exports = {
     }
   },
   aws: {
-  	base: 'https://s3-us-west-1.amazonaws.com/',
-  	buckets: {
-  		videoBucket: 'room-baby-videos/'
+    base: 'https://s3-us-west-1.amazonaws.com/',
+    buckets: {
+  	  videoBucket: 'room-baby-videos/'
   	}
   }
 }
