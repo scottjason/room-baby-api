@@ -12,6 +12,7 @@ exports.ping = function(req, res, next) {
 };
 
 exports.getVideoStatus = function(req, res, next) {
+	console.log('getVideoStatus', req.body);
   if(req.body.status === 'uploaded') {
 	var videoObj = {};
 	 videoObj.archiveId = req.body.id;
