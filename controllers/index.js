@@ -10,6 +10,7 @@ exports.videoStatus = function(req, res, next) {
     delete req.body.id;
     var video = new Video(req.body);
     video.archiveId = archiveId;
+    video.url = video.generateUrl(video.parnterid, video.archiveId);
   	video.save(function(err, savedVideo){
   	  console.log('saved video', savedVideo);
   	  	res.status(200).end();
