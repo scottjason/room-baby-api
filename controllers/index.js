@@ -1,8 +1,7 @@
-exports.ping = function(req, res, next) {
-  res.writeHead(200);
-  res.end('Pinged Room Baby Videos Api\n');
+exports.index = function(req, res, next) {
+  res.render('index');
 };
 
 exports.sendVideo = function(req, res, next) {
-	console.log('sendVideo', req)
-}
+  console.log('sendVideo', req);
+};

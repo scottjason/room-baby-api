@@ -8,6 +8,10 @@ var bodyParser = require('body-parser');
 var app = express();
 app.set('port', process.env.PORT || 3000);
 
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');;
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
