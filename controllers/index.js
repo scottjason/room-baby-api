@@ -23,8 +23,8 @@ exports.videoStatus = function(req, res, next) {
 exports.generateVideo = function(req, res, next) {
   var archiveId = req.params.archiveId;
   var partnerId = req.params.partnerId;
-  var videoUrl = new Video().generateUrl(partnerId, archiveId);
-
+  var videoUrl = new Video().generateUrl(partnerId, archiveId).toString();
+  // var videoUrl = 'https://s3-us-west-1.amazonaws.com/room-baby-videos/45130772/661f01fa-6eb2-439b-b052-1a010028e6db/archive.mp4'
   console.log('generateUrl', videoUrl);
   res.locals.videoUrl = videoUrl;
   res.render('video');
