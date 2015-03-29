@@ -24,7 +24,7 @@ exports.generateVideo = function(req, res, next) {
   var archiveId = req.params.archiveId;
   var partnerId = req.params.partnerId;
   var videoUrl = new Video().generateUrl(partnerId, archiveId);
-  
+
   console.log('generateUrl', videoUrl);
   res.locals.videoUrl = videoUrl;
   res.render('video');
