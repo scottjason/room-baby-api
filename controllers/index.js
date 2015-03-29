@@ -22,7 +22,7 @@ exports.videoStatus = function(req, res, next) {
 
 exports.generateVideo = function(req, res, next) {
   var archiveId = req.params.archiveId;
-  var partnerId = req.partnerId.partnerId;
+  var partnerId = req.params.partnerId;
   var videoUrl = new Video().generateUrl(partnerId, archiveId);
   
   console.log('generateUrl', videoUrl);
