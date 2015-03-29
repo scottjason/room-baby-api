@@ -19,3 +19,11 @@ exports.videoStatus = function(req, res, next) {
     res.status(200).end();
   };
 };
+
+exports.generateVideo = function(req, res, next) {
+  var archiveId = req.params.archiveId;
+  var partnerId = req.partnerId.partnerId;
+  var videoUrl = new Video().generateUrl(partnerId, archiveId);
+  res.locals.videoUrl = videoUrl;
+  res.render('video');
+};
