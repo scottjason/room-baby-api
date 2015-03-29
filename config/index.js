@@ -1,4 +1,4 @@
-var env = require('../env.js');
+if(!process.env.MONGOLAB_URI) var env = require('../env.js');
 
 module.exports = {
   db: {
