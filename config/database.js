@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var config = require('./');
 
 
-var connect = function() {
+var connect = function () {
   mongoose.connect(config.db.uri, config.db.opts);
 };
 

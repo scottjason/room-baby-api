@@ -5,7 +5,7 @@ exports.ping = function(req, res, next) {
 };
 
 exports.videoStatus = function(req, res, next) {
-  if (req.body.status === 'uploaded') {
+  if(req.body.status === 'uploaded') {
     var archiveId = req.body.id;
     var partnerId = req.body.partnerId;
     delete req.body.id;

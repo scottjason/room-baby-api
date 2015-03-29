@@ -1,6 +1,4 @@
-var env;
-
-if (!process.env.MONGOLAB_URI) env = require('../env');
+var env = require('../env.js');
 
 module.exports = {
   db: {
@@ -19,4 +17,4 @@ module.exports = {
       videoBucket: 'room-baby-videos/'
     }
   }
-}
+};
