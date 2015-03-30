@@ -24,9 +24,10 @@ exports.generateVideo = function(req, res, next) {
   var archiveId = req.params.archiveId;
   var partnerId = req.params.partnerId;
   var videoUrl = new Video().generateUrl(partnerId, archiveId).toString();
+  var siteUrl: 'https://video-ready-api.herokuapp.com/' + partnerId + '/' + archiveId;
   var fbAppId = '921064881267563';
+  res.locals.siteUrl = siteUrl;
   res.locals.videoUrl = videoUrl;
-  res.locals.siteUrl = videoUrl;
   res.locals.fbAppId = fbAppId;
   res.render('video');
 };
