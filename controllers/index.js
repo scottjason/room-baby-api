@@ -24,6 +24,10 @@ exports.generateVideo = function(req, res, next) {
   var archiveId = req.params.archiveId;
   var partnerId = req.params.partnerId;
   var videoUrl = new Video().generateUrl(partnerId, archiveId).toString();
+  var siteUrl = 'http://localhost:3001/' + partnerId + '/' + archiveId;
+  var fbAppId = '921064881267563';
   res.locals.videoUrl = videoUrl;
+  res.locals.siteUrl = siteUrl;
+  res.locals.fbAppId = fbAppId;
   res.render('video');
 };
