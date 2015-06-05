@@ -1,10 +1,12 @@
 var Video = require('../models/video');
 
-exports.ping = function(req, res, next) {
+exports.render = function(req, res, next) {
   res.render('index');
 };
 
-exports.videoStatus = function(req, res, next) {
+exports.getVideoStatus = function(req, res, next) {
+
+  console.log("GET VIDEO STATUS", req.body);
   if(req.body.status === 'uploaded') {
     var archiveId = req.body.id;
     var partnerId = req.body.partnerId;
