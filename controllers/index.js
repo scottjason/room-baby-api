@@ -8,6 +8,7 @@ exports.getVideoStatus = function(req, res, next) {
 
   console.log("GET VIDEO STATUS", req.body);
   if(req.body.status === 'uploaded') {
+    console.log("Saving Video");
     var archiveId = req.body.id;
     var partnerId = req.body.partnerId;
     delete req.body.id;
@@ -15,6 +16,7 @@ exports.getVideoStatus = function(req, res, next) {
     video.archiveId = archiveId;
     video.url = video.generateUrl(partnerId, archiveId);
     video.save(function(err, savedVideo) {
+    console.log("Video Saved", savedVideo);
       res.status(200).end();
     });
   } else {
