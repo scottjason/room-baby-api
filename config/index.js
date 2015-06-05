@@ -12,7 +12,7 @@ module.exports = {
     }
   },
   aws: {
-    base: 'https://s3-us-west-1.amazonaws.com/',
+    base: 'https://s3-us-west-2.amazonaws.com/',
     buckets: {
       videoBucket: 'rtc-videos/'
     }
