@@ -2,7 +2,7 @@ if(!process.env.MONGOLAB_URI) var env = require('../env.js');
 
 module.exports = {
   db: {
-    uri: process.env.MONGOLAB_URI || env.MONGOLAB_URI,
+    uri: process.env.MONGOLAB_URI || env.MONGOLAB_URI_DEV,
     opts: {
       server: {
         socketOptions: {
