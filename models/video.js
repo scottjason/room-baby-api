@@ -8,14 +8,13 @@ var videoSchema = new mongoose.Schema({
   archiveId: String,
   sessionId: String,
   partnerId: Number,
-  createdAt: Date,
+  createdAt: Number,
   size: Number,
-  duration: Number,
-  updatedAt: Number
+  duration: Number
 });
 
 videoSchema.methods.generateUrl = function(partnerId, archiveId) {
-  return config.aws.base + config.aws.buckets.videoBucket + partnerId + '/' + archiveId + '/archive.mp4';
+  return config.aws.base + config.aws.bucket + partnerId + '/' + archiveId + '/archive.mp4';
 };
 
 

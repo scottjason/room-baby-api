@@ -12,7 +12,9 @@ exports.videoStatus = function(req, res, next) {
     var partnerId = req.body.partnerId;
     delete req.body.id;
     var video = new Video(req.body);
+    video.sessionId = req.body.sessionId;
     video.archiveId = archiveId;
+    video.createdAt = new Date().getTime();
     video.url = video.generateUrl(partnerId, archiveId);
     video.save(function(err, savedVideo) {
       res.status(200).end();
