@@ -1,4 +1,5 @@
 var Video = require('../models/video');
+var config = require('../config')
 
 exports.render = function(req, res, next) {
   res.render('index');
@@ -22,10 +23,8 @@ exports.videoStatus = function(req, res, next) {
 
 
 exports.generateVideo = function(req, res, next) {
-  console.log('hit generate video with params', req.params);
-  var videoUrl = 'https://room-baby-video-api.herokuapp.com/rtc-videos/' + req.params.partnerId + '/' + req.params.archiveId + '/archive.mp4';
+  var videoUrl = config.aws.base + config.aws.bucket + req.params.partnerId + '/' + req.params.archiveId + '/archive.mp4';
   var siteUrl = 'https://room-baby-video-api.herokuapp.com/' + req.params.partnerId + '/' + req.params.archiveId;
-  console.log('##### Site URL', siteUrl);
   var fbAppId = '921064881267563';
   res.locals.siteUrl = siteUrl;
   res.locals.videoUrl = videoUrl;

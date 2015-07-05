@@ -1,4 +1,4 @@
-if(!process.env.MONGOLAB_URI) var env = require('../env.js');
+if (!process.env.MONGOLAB_URI) var env = require('../env.js');
 
 module.exports = {
   db: {
@@ -13,8 +13,6 @@ module.exports = {
   },
   aws: {
     base: 'https://s3-us-west-2.amazonaws.com/',
-    buckets: {
-      videoBucket: 'rtc-videos/'
-    }
+    bucket: 'rtc-videos/'
   }
 };
