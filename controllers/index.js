@@ -5,7 +5,6 @@ exports.render = function(req, res, next) {
 };
 
 exports.videoStatus = function(req, res, next) {
-	console.log('req.body', req.body);
   if (req.body.status === 'uploaded') {
     var archiveId = req.body.id;
     var partnerId = req.body.partnerId;
@@ -23,6 +22,7 @@ exports.videoStatus = function(req, res, next) {
 
 
 exports.generateVideo = function(req, res, next) {
+  console.log('hit generate video with params', req.params);
   var videoUrl = 'https://room-baby-video-api.herokuapp.com/rtc-videos/' + req.params.partnerId + '/' + req.params.archiveId + '/archive.mp4';
   var siteUrl = 'https://room-baby-video-api.herokuapp.com/' + req.params.partnerId + '/' + req.params.archiveId;
   console.log('##### Site URL', siteUrl);
