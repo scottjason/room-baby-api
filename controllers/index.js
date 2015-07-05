@@ -4,31 +4,9 @@ exports.render = function(req, res, next) {
   res.render('index');
 };
 
-exports.getVideoStatus = function(req, res, next) {
-
-  console.log("GET VIDEO STATUS", req.body);
-  if(req.body.status === 'uploaded') {
-    console.log("Saving Video");
-    var archiveId = req.body.id;
-    var partnerId = req.body.partnerId;
-    delete req.body.id;
-    var video = new Video(req.body);
-    video.archiveId = archiveId;
-    video.url = video.generateUrl(partnerId, archiveId);
-    video.save(function(err, savedVideo) {
-    console.log("Video Saved", savedVideo);
-      res.status(200).end();
-    });
-  } else {
-    res.status(200).end();
-  };
-};
-
 exports.generateVideo = function(req, res, next) {
-  var archiveId = req.params.archiveId;
-  var partnerId = req.params.partnerId;
-  var videoUrl = new Video().generateUrl(partnerId, archiveId).toString();
-  var siteUrl = 'https://room-baby-video-api.herokuapp.com/' + partnerId + '/' + archiveId;
+  var videoUrl = 'https://s3-us-west-2.amazonaws.com/rtc-videos/45238782/e42810ef-7639-4fcd-aeb5-25c8833667c4/archive.mp4'
+  var siteUrl = 'https://room-baby-video-api.herokuapp.com/' + req.body.partnerId + '/' + req.body.archiveId;
   var fbAppId = '921064881267563';
   res.locals.siteUrl = siteUrl;
   res.locals.videoUrl = videoUrl;
