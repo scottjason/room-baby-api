@@ -4,23 +4,26 @@
 <head>
   <title>RB Videos Api</title>
   <meta property="og:title" content="room baby videos" />
-  <meta property="og:site_name" content="Room Baby"/>
-  <meta property="fb:app_id" content= <%= fbAppId %> />
-  <meta property="og:url" content= <%= siteUrl %> />
-  <meta property="og:image" content="https://raw.githubusercontent.com/scottjason/room-baby-videos-api/master/views/img/room-baby-poster-four.png"/>
-
+  <meta property="og:site_name" content="Room Baby" />
+  <meta property="fb:app_id" content=<%= fbAppId %> />
+  <meta property="og:url" content=<%= siteUrl %> />
+  <meta property="og:image" content="https://raw.githubusercontent.com/scottjason/room-baby-videos-api/master/views/img/rb-embed-1200-650.png" />
   <script type="text/javascript">
   document.createElement('video');
   document.createElement('audio');
   document.createElement('track');
   </script>
   <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
+  <link href="/styles/main.css" rel="stylesheet">
   <script src="//vjs.zencdn.net/4.12/video.js"></script>
+  <script src="/scripts/init.js"></script>
 </head>
 
-<body style='position: fixed; top: 50%; left: 50%; margin-top: -132px; margin-left: -320px; background-color: black;'>
-  <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" poster="https://raw.githubusercontent.com/scottjason/room-baby-videos-api/master/views/img/room-baby-poster-four.png" data-setup='{"example_option":true}'>
-    <source src=  <%= videoUrl %> type='video/mp4' />
-  </video>
+<body>
+  <div class="container">
+    <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" poster="https://raw.githubusercontent.com/scottjason/room-baby-videos-api/master/views/img/rb-embed-1200-650.png" data-setup='{"example_option":true}'>
+      <source src=<%= videoUrl %> type='video/mp4' />
+    </video>
+  </div>
 
 </html>

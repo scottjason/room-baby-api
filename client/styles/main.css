@@ -1,0 +1,41 @@
+body {
+  background: black;
+}
+.vjs-default-skin .vjs-big-play-button {
+	visibility: hidden;
+}
+.container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.vjs-poster {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #000;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#example_video_1 {
+  width: 640px;
+  height: 264px;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
