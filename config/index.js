@@ -1,3 +1,5 @@
+console.log(process.env.MONGOLAB_URI);
+
 if (!process.env.MONGOLAB_URI) var env = require('../env.js');
 
 module.exports = {
