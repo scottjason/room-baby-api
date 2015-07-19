@@ -1,4 +1,82 @@
-body,
-html {
-  background: red;
+html,
+body {
+  background: black;
+  overflow: hidden;
+}
+
+ div.OT_widget-container > video {
+ 	width: 100%;
+ 	height: 100%;
+ }
+
+.broadcast-navbar {
+  height: 100px;
+  position: fixed;
+  background: black;
+  top: 0;
+  width: 100%;
+  z-index: 4;
+}
+
+#broadcast-container {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background: black;
+}
+
+.broadcast-background {
+  background: #000;
+  width: 100%;
+  height: 100%;
+  position: absolute
+}
+
+.broadcast-title {
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  text-align: center;
+  bottom: 20px;
+  font-weight: 300;
+}
+
+.broadcast-line {
+  position: absolute;
+  top: 48px;
+  width: 40%;
+  border-bottom: 1px solid #d0314f;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+.broadcast-live {
+  font-size: 18px;
+  text-align: center;
+  position: absolute;
+  top: 60px;
+  color: #7EB1DC;
+  font-weight: 300;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+.facebook-broadcast-share {
+  color: #7EB1DC;
+  font-size: 14px;
+  font-weight: 400;
+  position: absolute;
+  right: 433px;
+  text-align: center;
+  top: 32px;
+  cursor: pointer;
 }

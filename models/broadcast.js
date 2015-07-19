@@ -14,6 +14,10 @@ var broadcastSchema = new mongoose.Schema({
   name: {
     type: String
   },
+  isRunning: {
+    type: Boolean,
+    default: false
+  },
   sessionId: {
     type: String
   },

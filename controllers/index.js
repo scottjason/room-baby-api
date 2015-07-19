@@ -35,19 +35,27 @@ exports.generateVideo = function(req, res, next) {
   res.render('video');
 };
 
-exports.generateBroadcast = function(req, res, next) {
+exports.renderBroadcast = function(req, res, next) {
+  var siteUrl = 'https://room-baby-video-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
+  var fbAppId = '921064881267563';
+  res.locals.fbAppId = fbAppId;
+  res.locals.siteUrl = siteUrl;
+  res.render('broadcast');
+};
+
+exports.getBroadcast = function(req, res, next) {
   var broadcastId = req.params.broadcast_id;
   Broadcast.findById(broadcastId, function(err, broadcast) {
-    console.log(err || broadcast);
     if (err) return next(err);
-    var siteUrl = 'https://room-baby-video-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
-    var fbAppId = '921064881267563';
-    res.locals.fbAppId = fbAppId;
-    res.locals.siteUrl = siteUrl;
-    res.locals.token = broadcast.token;
-    res.locals.sessionId = broadcast.sessionId;
-    res.locals.key = broadcast.key;
-    res.locals.secret = broadcast.secret;
-    res.render('broadcast');
+    if (!broadcast.isRunning) {
+        res.status(200).send(broadcast);
+        broadcast.isRunning = true;
+      broadcast.save(function(err, savedBroadcast) {
+        console.log(err || savedBroadcast);
+      });
+    } else {
+      res.status(200).send(broadcast);
+    }
   });
-};
+
+}
