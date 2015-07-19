@@ -39,7 +39,7 @@ exports.generateVideo = function(req, res, next) {
 exports.generateBroadcast = function(req, res, next) {
   var broadcastId = req.params.broadcast_id;
   Broadcast.findById(broadcastId, function(err, broadcast) {
-    if (err) reurn next(err);
+    if (err) return next(err);
     var siteUrl = 'https://room-baby-video-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
     var fbAppId = '921064881267563';
     res.locals.fbAppId = fbAppId;
