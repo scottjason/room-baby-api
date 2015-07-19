@@ -8,12 +8,12 @@
   <meta property="fb:app_id" content=<%= fbAppId %> />
   <meta property="og:url" content=<%= siteUrl %> />
   <meta property="og:image" content="https://raw.githubusercontent.com/scottjason/room-baby-videos-api/master/views/img/rb-embed-735-350.png" />
-  <script>
-  var sessionId = <%= sessionId %>
-  var token = <%= token %>
-  var key = <%= key %>
-  var secret = <%= secret %>
-  </script>
+
+  <p style="display:none;" id="sessionId"><%= sessionId %></p>
+  <p style="display:none;" id="token"><%= token %></p>
+  <p style="display:none;" id="key"><%= key %></p>
+  <p style="display:none;" id="secret"><%= secret %></p>
+
   <link href="/styles/broadcast.css" rel="stylesheet">
   <script src="/scripts/lib/opentok-min.js"></script>
   <script src="/scripts/broadcast.js"></script>
