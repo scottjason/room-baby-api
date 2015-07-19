@@ -25,7 +25,6 @@ exports.videoStatus = function(req, res, next) {
   };
 };
 
-
 exports.generateVideo = function(req, res, next) {
   var videoUrl = config.aws.base + config.aws.bucket + req.params.partnerId + '/' + req.params.archiveId + '/archive.mp4';
   var siteUrl = 'https://room-baby-video-api.herokuapp.com/embed/' + req.params.partnerId + '/' + req.params.archiveId;
@@ -45,7 +44,10 @@ exports.generateBroadcast = function(req, res, next) {
     var fbAppId = '921064881267563';
     res.locals.fbAppId = fbAppId;
     res.locals.siteUrl = siteUrl;
-    res.locals.broadcast = broadcast;
+    res.locals.token = broadcast.token;
+    res.locals.sessionId = broadcast.sessionId;
+    res.locals.key = broadcast.key;
+    res.locals.secret = broadcast.secret;
     res.render('broadcast');
   });
 };
