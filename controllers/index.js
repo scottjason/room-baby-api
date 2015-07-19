@@ -1,4 +1,5 @@
 var Video = require('../models/video');
+var Broadcast = require('../models/broadcast');
 var config = require('../config');
 
 exports.render = function(req, res, next) {
@@ -36,9 +37,14 @@ exports.generateVideo = function(req, res, next) {
 };
 
 exports.generateBroadcast = function(req, res, next) {
-  var siteUrl = 'https://room-baby-video-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
-  var fbAppId = '921064881267563';
-  res.locals.fbAppId = fbAppId;
-  res.locals.siteUrl = siteUrl;
-  res.render('broadcast');
+  var broadcastId = req.params.broadcast_id;
+  Broadcast.findById(broadcastId, function(err, broadcast) {
+    if (err) reurn next(err);
+    var siteUrl = 'https://room-baby-video-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
+    var fbAppId = '921064881267563';
+    res.locals.fbAppId = fbAppId;
+    res.locals.siteUrl = siteUrl;
+    res.locals.broadcast = broadcast;
+    res.render('broadcast');
+  });
 };

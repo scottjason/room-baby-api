@@ -1,1 +1,1 @@
-console.log('broadcast init');
+console.log('broadcast init', broadcast);
