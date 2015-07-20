@@ -64,8 +64,11 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
       name: "Room Baby Broadcast",
       description: "View Live Stream Now"
     }, function(response) {
-      localStorageService.get('hasShared', true);
-      console.log(response);
+      if (response && response.post_id) {
+        $timeout(function() {
+          localStorageService.set('hasShared', true);
+        });
+      }
     });
   };
 
