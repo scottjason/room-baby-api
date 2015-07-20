@@ -1,10 +1,11 @@
 var Broadcast = require('../models/broadcast');
-var mongodb = require("mongodb");
-var objectid = mongodb.BSONPure.ObjectID;
+
 
 exports.renderBroadcast = function(req, res, next) {
   var broadcastId = req.params.broadcast_id;
-  var isValidId = objectid.isValid(broadcastId);
+  var regex = /^[0-9a-fA-F]{24}$/;
+  var isValid = broadcastId.match(regex)
+  console.log('isValid', isValid);
   if (isValidId) {
     Broadcast.findById(broadcastId, function(err, broadcast) {
       if (err) return next(err);
