@@ -88,7 +88,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
       $scope.showLink = !$scope.showLink;
       $timeout(function() {
         $scope.showLink = !$scope.showLink;
-      }, 30000);
+      }, 12000);
     });
   };
 
