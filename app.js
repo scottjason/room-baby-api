@@ -23,6 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', require('./routes/index'));
+app.use('/', require('./routes/video'));
+app.use('/', require('./routes/broadcast'));
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
