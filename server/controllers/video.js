@@ -21,7 +21,7 @@ exports.videoStatus = function(req, res, next) {
 
 exports.generateVideo = function(req, res, next) {
   var videoUrl = config.aws.base + config.aws.bucket + req.params.partnerId + '/' + req.params.archiveId + '/archive.mp4';
-  var siteUrl = 'https://room-baby-video-api.herokuapp.com/embed/' + req.params.partnerId + '/' + req.params.archiveId;
+  var siteUrl = 'https://roombaby-api.herokuapp.com/embed/' + req.params.partnerId + '/' + req.params.archiveId;
   var fbAppId = '921064881267563';
   res.locals.siteUrl = siteUrl;
   res.locals.videoUrl = videoUrl;
