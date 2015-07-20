@@ -1,14 +1,15 @@
 <div ng-init='broadcastCtrl.initialize();' class='broadcast-background'>
   <div class='broadcast-navbar'>
-  <p class='subscriber-count'>{{ viewers }}</p>
+  <p ng-show='isReady' class='subscriber-count'>{{ viewers }}</p>
     <p class='broadcast-title'>Room Baby</p>
     <p ng-show='showShareSuccess' class='shared-successfuly'>Shared!</p>
-    <div class='facebook-share-btn' ng-show='broadcastCtrl.showShareLink();' ng-click='broadcastCtrl.openShareDialog();'><p>share to facebook</p></div>
-    <div ng-hide='showLink' class='copy-link-btn' ng-click='broadcastCtrl.copyLink();'><p>copy room link</p></div>
+    <div class='facebook-share-btn' ng-show='broadcastCtrl.showShareLink() && isReady' ng-click='broadcastCtrl.openShareDialog();'><p>share to facebook</p></div>
+    <div ng-hide='showLink || !isReady' class='copy-link-btn' ng-click='broadcastCtrl.copyLink();'><p>copy room link</p></div>
     <div ng-show='showLink' class='show-link-container'><p>{{ broadcast.shortUrl }}</p></div>
-    <p class='time-left'>{{ timeLeft }}</p>
+    <p ng-show='isReady' class='time-left'>{{ timeLeft }}</p>
     <div class='broadcast-line'></div>
     <p class='broadcast-live'>- Broadcasting Live -</p>
   </div>
   <div id="broadcast-container"></div>
+  <div ng-show='isReady' class='disconnect-btn' ng-click='broadcastCtrl.disconnect();'><p>disconnect</p></div>
 </div>

@@ -91,25 +91,16 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     });
   };
 
+  this.disconnect = function() {
+    $scope.session.disconnect();
+  };
+
   ctrl.registerEvents = function() {
     $scope.session.on("connectionDestroyed", function() {
       console.debug('connectionDestroyed');
       $timeout(function() {
         $scope.connectionCount--
       });
-      if (!$scope.isDeleting) {
-        $scope.isDeleting = true;
-        var broadcastId = localStorageService.get('broadcast')._id;
-        BroadcastApi.remove(broadcastId).then(function(response) {
-          $timeout(function() {
-            $window.location.href = $window.location.protocol + '//' + $window.location.host + $window.location.pathname;
-          });
-        }, function(err) {
-          $timeout(function() {
-            $window.location.href = $window.location.protocol + '//' + $window.location.host + $window.location.pathname;
-          });
-        });
-      }
     });
 
     $scope.session.on("streamDestroyed", function() {
@@ -194,6 +185,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
           $scope.session.publish(publisher);
           broadcastContainer.appendChild(pubElem);
           layout();
+          $scope.isReady = true;
           ctrl.timeLeft();
         });
       }
