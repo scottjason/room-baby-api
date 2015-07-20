@@ -1,24 +1,30 @@
 var Broadcast = require('../models/broadcast');
+var mongodb = require("mongodb");
+var objectid = mongodb.BSONPure.ObjectID;
 
 exports.renderBroadcast = function(req, res, next) {
-  console.log('render broadcast');
   var broadcastId = req.params.broadcast_id;
-  Broadcast.findById(broadcastId, function(err, broadcast) {
-    if (err) return next(err);
-    if (!broadcast) {
-      var siteUrl = 'https://roombaby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
-      var fbAppId = '921064881267563';
-      res.locals.fbAppId = fbAppId;
-      res.locals.siteUrl = siteUrl;
-      res.render('broadcast-expired');
-    } else {
-      var siteUrl = 'https://roombaby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
-      var fbAppId = '921064881267563';
-      res.locals.fbAppId = fbAppId;
-      res.locals.siteUrl = siteUrl;
-      res.render('broadcast');
-    }
-  });
+  var isValidId = objectid.isValid(broadcastId);
+  if (isValidId) {
+    Broadcast.findById(broadcastId, function(err, broadcast) {
+      if (err) return next(err);
+      if (!broadcast) {
+        var siteUrl = 'https://roombaby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
+        var fbAppId = '921064881267563';
+        res.locals.fbAppId = fbAppId;
+        res.locals.siteUrl = siteUrl;
+        res.render('broadcast-expired');
+      } else {
+        var siteUrl = 'https://roombaby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
+        var fbAppId = '921064881267563';
+        res.locals.fbAppId = fbAppId;
+        res.locals.siteUrl = siteUrl;
+        res.render('broadcast');
+      }
+    });
+  } else {
+    console.log('invalid id');
+  }
 };
 
 exports.getBroadcast = function(req, res, next) {
