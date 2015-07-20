@@ -5,15 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var database = require('./config/database');
+var config = require('./config');
 
 var app = express();
 
 app.set('port', process.env.PORT || 3001);
-app.set('views', __dirname + '/views');
+app.set('views', config.root + '/server/views');
+
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');;
 
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(config.root, 'client')));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
