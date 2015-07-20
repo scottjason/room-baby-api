@@ -40,7 +40,6 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     var broadcastId = $state.params.broadcast_id;
     BroadcastApi.get(broadcastId).then(function(response) {
       if (response.status === 200) {
-        console.log(response);
         $scope.broadcast = response.data;
         localStorageService.set('broadcast', response.data);
         var isPublisher = (response.data.connectCount === 1) || localStorageService.get('isPublisher');
@@ -175,8 +174,6 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
               console.log('Subscriber added.');
             }
           });
-      } else {
-        console.log('pub stream');
       }
     });
   };
@@ -205,7 +202,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
 
   ctrl.timeLeft = function() {
     var broadcast = localStorageService.get('broadcast');
-    var expiresAt = (broadcast.expiresAt);
+    var expiresAt = broadcast.expiresAt;
     var currentMsUtc = new Date().getTime();
     var msLeft = (expiresAt - currentMsUtc);
     var secondsLeft = (msLeft / 1000);
