@@ -6,6 +6,8 @@ angular.module('Broadcast')
 function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastApi, localStorageService) {
   var ctrl = this;
   $scope.connectionCount = 0;
+  $scope.placeholder = {};
+  $scope.placeholder.link = 'placeholder';
 
   var broadcastContainer = document.getElementById('broadcast-container');
   var opts = {
@@ -36,12 +38,12 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     }
   });
 
-
-
   this.initialize = function() {
     var broadcastId = $state.params.broadcast_id;
     BroadcastApi.get(broadcastId).then(function(response) {
       if (response.status === 200) {
+        console.log(response);
+        $scope.broadcast = response.data;
         localStorageService.set('broadcast', response.data);
         var isPublisher = (response.data.connectCount === 1) || localStorageService.get('isPublisher');
         if (isPublisher) {
@@ -83,11 +85,51 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     return (localStorageService.get('isPublisher') && localStorageService.get('showShareLink'));
   };
 
+  this.copyLink = function() {
+    $timeout(function(){
+    $scope.showLink = !$scope.showLink;
+    })
+  };
+
   ctrl.registerEvents = function() {
     $scope.session.on("connectionDestroyed", function() {
+      console.debug('connectionDestroyed');
       $timeout(function() {
         $scope.connectionCount--
-      })
+      });
+      if (!$scope.isDeleting) {
+        $scope.isDeleting = true;
+        var broadcastId = localStorageService.get('broadcast')._id;
+        BroadcastApi.remove(broadcastId).then(function(response) {
+          $timeout(function() {
+            $window.location.href = $window.location.protocol + '//' + $window.location.host + $window.location.pathname;
+          });
+        }, function(err) {
+          $timeout(function() {
+            $window.location.href = $window.location.protocol + '//' + $window.location.host + $window.location.pathname;
+          });
+        });
+      }
+    });
+
+    $scope.session.on("streamDestroyed", function() {
+      console.debug('streamDestroyed');
+      $timeout(function() {
+        $scope.connectionCount--
+      });
+      if (!$scope.isDeleting) {
+        $scope.isDeleting = true;
+        var broadcastId = localStorageService.get('broadcast')._id;
+        BroadcastApi.remove(broadcastId).then(function(response) {
+          $timeout(function() {
+            $window.location.href = $window.location.protocol + '//' + $window.location.host + $window.location.pathname;
+          });
+        }, function(err) {
+          $timeout(function() {
+            $window.location.href = $window.location.protocol + '//' + $window.location.host + $window.location.pathname;
+          });
+        });
+      }
     });
 
     $scope.session.on("connectionCreated", function(event) {
