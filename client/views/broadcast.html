@@ -11,5 +11,5 @@
     <p class='broadcast-live'>- Broadcasting Live -</p>
   </div>
   <div id="broadcast-container"></div>
-  <div ng-show='isReady' class='disconnect-btn' ng-click='broadcastCtrl.disconnect();'><p>disconnect</p></div>
+  <div ng-show='isReady && broadcastCtrl.showShareLink()' class='disconnect-btn' ng-click='broadcastCtrl.disconnect();'><p>disconnect</p></div>
 </div>
