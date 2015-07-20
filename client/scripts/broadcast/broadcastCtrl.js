@@ -161,7 +161,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
       var isPublisher = localStorageService.get('isPublisher');
       if (!isPublisher) {
         var subscriberProperties = {
-          insertMode: 'replace',
+          insertMode: 'append',
           width: "100%",
           height: "100%"
         };
