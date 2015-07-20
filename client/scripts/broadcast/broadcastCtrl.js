@@ -24,15 +24,22 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     $timeout(resizeCams, 20);
   };
 
+  $scope.$watch('connectionCount', function() {
+    if ($scope.connectionCount !== 1) {
+      $timeout(function() {
+        $scope.viewers = 'there are ' + $scope.connectionCount + ' viewers watching';
+      });
+    } else {
+      $timeout(function() {
+        $scope.viewers = 'there is ' + $scope.connectionCount + ' viewer watching';
+      });
+    }
+  });
+
 
 
   this.initialize = function() {
     var broadcastId = $state.params.broadcast_id;
-    if (!localStorageService.get('subscriberCount:' + broadcastId)) {
-      localStorageService.set('subscriberCount:' + broadcastId, 0);
-    }
-    var broadcastId = $state.params.broadcast_id;
-    console.log(broadcastId);
     BroadcastApi.get(broadcastId).then(function(response) {
       if (response.status === 200) {
         localStorageService.set('broadcast', response.data);
@@ -57,16 +64,13 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
       name: "Room Baby Broadcast",
       description: "View Live Stream Now"
     }, function(response) {
+      localStorageService.get('hasShared', true);
       console.log(response);
     });
   };
 
   this.showShareLink = function() {
-    return localStorageService.get('isPublisher');
-  };
-
-  this.getSubscriberCount = function() {
-    return $scope.connectionCount;
+    return localStorageService.get('isPublisher') && !localStorageService.get('hasShared');
   };
 
   ctrl.registerEvents = function() {
@@ -91,11 +95,11 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
       var broadcastId = localStorageService.get('broadcast')._id;
       BroadcastApi.remove(broadcastId).then(function(response) {
         $timeout(function() {
-          $window.location.href = $window.location.protocol + '//' + $window.location.host  + $window.location.pathname;
+          $window.location.href = $window.location.protocol + '//' + $window.location.host + $window.location.pathname;
         });
       }, function(err) {
         $timeout(function() {
-          $window.location.href = $window.location.protocol + '//' + $window.location.host +  $window.location.pathname;
+          $window.location.href = $window.location.protocol + '//' + $window.location.host + $window.location.pathname;
         });
       });
     });
@@ -148,7 +152,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
 
   ctrl.timeLeft = function() {
     var broadcast = localStorageService.get('broadcast');
-    var expiresAt = (broadcast.expiresAt - 280000);
+    var expiresAt = (broadcast.expiresAt);
     var currentMsUtc = new Date().getTime();
     var msLeft = (expiresAt - currentMsUtc);
     var secondsLeft = (msLeft / 1000);
@@ -172,9 +176,9 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
   };
 
   ctrl.joinBroadcast = function(broadcast) {
-    var session = OT.initSession(broadcast.key, broadcast.sessionId);
-    ctrl.registerEvents(session);
-    session.connect(broadcast.token, function(err) {
+    $scope.session = OT.initSession(broadcast.key, broadcast.sessionId);
+    ctrl.registerEvents();
+    $scope.session.connect(broadcast.token, function(err) {
       ctrl.timeLeft();
     });
   };

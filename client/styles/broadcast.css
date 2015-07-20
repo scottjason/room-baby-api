@@ -5,6 +5,35 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.facebook-share-btn {
+  position: absolute;
+  width: 160px;
+  height: 30px;
+  background-color: green;
+  border-radius: 35px;
+  background-color: transparent;
+  border: 1px solid #7EB1DC;
+  margin: auto;
+  top: 59px;
+  z-index: 20;
+  right: 0;
+  left: 531px;
+  cursor: pointer;
+}
+
+.facebook-share-btn > p {
+  color: rgba(255, 255, 255, .9);
+  position: relative;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 13px;
+  text-align: center;
+  top: 5px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
   top: 16px;
@@ -65,7 +94,6 @@ a {
   right: 0;
   margin: auto;
   text-align: center;
-  /*color: #7EB1DC;*/
   border: 1px solid #7EB1DC;
   font-size: 18px;
   color: white;
@@ -82,7 +110,6 @@ a {
   left: 0;
   right: 0;
   margin: auto;
-  /*color: #7EB1DC;*/
   text-align: center;
   border: 1px solid #7EB1DC;
   font-size: 18px;
@@ -99,6 +126,7 @@ a {
   margin: auto;
   top: 30px;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .time-left {
@@ -111,6 +139,8 @@ a {
   margin: auto;
   text-align: center;
   cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
 }
 
 .facebook-share {
@@ -124,6 +154,8 @@ a {
   text-align: center;
   cursor: pointer;
   z-index: 5;
+  white-space: nowrap;
+  font-size: 14px;
 }
 
 div.OT_widget-container > video {
@@ -187,7 +219,8 @@ div.OT_widget-container > video {
   text-align: center;
   position: absolute;
   top: 60px;
-  color: #7EB1DC;
+  color: #79DFB6;
+  /*color: #7EB1DC;*/
   font-weight: 300;
   margin: auto;
   left: 0;
