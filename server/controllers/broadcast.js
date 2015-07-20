@@ -6,13 +6,13 @@ exports.renderBroadcast = function(req, res, next) {
   Broadcast.findById(broadcastId, function(err, broadcast) {
     if (err) return next(err);
     if (!broadcast) {
-      var siteUrl = 'https://room-baby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
+      var siteUrl = 'https://roombaby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
       var fbAppId = '921064881267563';
       res.locals.fbAppId = fbAppId;
       res.locals.siteUrl = siteUrl;
       res.render('broadcast-expired');
     } else {
-      var siteUrl = 'https://room-baby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
+      var siteUrl = 'https://roombaby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
       var fbAppId = '921064881267563';
       res.locals.fbAppId = fbAppId;
       res.locals.siteUrl = siteUrl;
@@ -32,7 +32,7 @@ exports.getBroadcast = function(req, res, next) {
           res.status(200).send(savedBroadcast);
         });
     } else {
-      var siteUrl = 'https://room-baby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
+      var siteUrl = 'https://roombaby-api.herokuapp.com/broadcast/' + req.params.broadcast_id;
       var fbAppId = '921064881267563';
       res.locals.fbAppId = fbAppId;
       res.locals.siteUrl = siteUrl;
