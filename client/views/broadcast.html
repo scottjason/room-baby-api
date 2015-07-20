@@ -1,0 +1,9 @@
+<div ng-init='broadcastCtrl.initialize();' class='broadcast-background'>
+  <div class='broadcast-navbar'>
+    <p class='broadcast-title'>Room Baby</p>
+    <p ng-show='broadcastCtrl.showShareLink();'class='facebook-share' ng-click='broadcastCtrl.openShareDialog();'>share to facebook</p>
+    <div class='broadcast-line'></div>
+    <p class='broadcast-live'>- Broadcasting Live -</p>
+  </div>
+  <div id="broadcast-container"></div>
+</div>

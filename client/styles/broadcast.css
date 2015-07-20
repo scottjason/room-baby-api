@@ -4,10 +4,22 @@ body {
   overflow: hidden;
 }
 
- div.OT_widget-container > video {
- 	width: 100%;
- 	height: 100%;
- }
+.facebook-share {
+  color: #7EB1DC;
+  position: absolute;
+  top: 30px;
+  bottom: 0;
+  left: 460px;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+div.OT_widget-container > video {
+  width: 100%;
+  height: 100%;
+}
 
 .broadcast-navbar {
   height: 100px;
@@ -51,7 +63,7 @@ body {
 .broadcast-line {
   position: absolute;
   top: 48px;
-  width: 40%;
+  width: 600px;
   border-bottom: 1px solid #d0314f;
   margin: auto;
   left: 0;
@@ -70,13 +82,5 @@ body {
   right: 0;
 }
 
-.facebook-broadcast-share {
-  color: #7EB1DC;
-  font-size: 14px;
-  font-weight: 400;
-  position: absolute;
-  right: 433px;
-  text-align: center;
-  top: 32px;
   cursor: pointer;
 }

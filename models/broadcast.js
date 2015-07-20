@@ -14,10 +14,6 @@ var broadcastSchema = new mongoose.Schema({
   name: {
     type: String
   },
-  isRunning: {
-    type: Boolean,
-    default: false
-  },
   sessionId: {
     type: String
   },
@@ -29,6 +25,10 @@ var broadcastSchema = new mongoose.Schema({
   },
   secret: {
     type: String
+  },
+  connectCount: {
+    type: Number,
+    default: 0
   },
   shortUrl: {
     type: String

@@ -46,16 +46,10 @@ exports.renderBroadcast = function(req, res, next) {
 exports.getBroadcast = function(req, res, next) {
   var broadcastId = req.params.broadcast_id;
   Broadcast.findById(broadcastId, function(err, broadcast) {
-    if (err) return next(err);
-    if (!broadcast.isRunning) {
-        res.status(200).send(broadcast);
-        broadcast.isRunning = true;
+    broadcast.connectCount++
       broadcast.save(function(err, savedBroadcast) {
-        console.log(err || savedBroadcast);
+        if (err) return next(err);
+        res.status(200).send(savedBroadcast);
       });
-    } else {
-      res.status(200).send(broadcast);
-    }
   });
-
 }
