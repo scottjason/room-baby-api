@@ -232,6 +232,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     $scope.session = OT.initSession(broadcast.key, broadcast.sessionId);
     ctrl.registerEvents();
     $scope.session.connect(broadcast.token, function(err) {
+      layout();
       ctrl.timeLeft();
     });
   };
