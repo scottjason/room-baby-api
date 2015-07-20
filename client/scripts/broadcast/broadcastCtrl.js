@@ -222,6 +222,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     ctrl.registerEvents();
     $scope.session.connect(broadcast.token, function(err) {
       layout();
+      $scope.isReady = true;
       ctrl.timeLeft();
     });
   };
