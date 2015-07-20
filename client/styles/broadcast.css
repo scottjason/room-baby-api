@@ -5,6 +5,20 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.show-link-container > p {
+  color: white;
+  font-size: 14px;
+  font-weight: 300;
+  position: absolute;
+  left: 0;
+  right: 570px;
+  top: 64px;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  z-index: 8;
+}
+
 .copy-link-input {
   position: absolute;
   width: 166px;

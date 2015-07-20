@@ -6,8 +6,6 @@ angular.module('Broadcast')
 function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastApi, localStorageService) {
   var ctrl = this;
   $scope.connectionCount = 0;
-  $scope.placeholder = {};
-  $scope.placeholder.link = 'placeholder';
 
   var broadcastContainer = document.getElementById('broadcast-container');
   var opts = {
@@ -74,7 +72,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
             $scope.showShareSuccess = true;
             $timeout(function() {
               $scope.showShareSuccess = false;
-            }, 1200);
+            }, 2000);
           });
         });
       }
@@ -86,9 +84,12 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
   };
 
   this.copyLink = function() {
-    $timeout(function(){
-    $scope.showLink = !$scope.showLink;
-    })
+    $timeout(function() {
+      $scope.showLink = !$scope.showLink;
+      $timeout(function() {
+        $scope.showLink = !$scope.showLink;
+      }, 30000);
+    });
   };
 
   ctrl.registerEvents = function() {
