@@ -46,6 +46,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
         var isPublisher = (response.data.connectCount === 1) || localStorageService.get('isPublisher');
         if (isPublisher) {
           localStorageService.set('isPublisher', true);
+          localStorageService.set('showShareLink', true);
           ctrl.startBroadcast(response.data);
         } else {
           ctrl.joinBroadcast(response.data);
@@ -66,7 +67,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     }, function(response) {
       if (response && response.post_id) {
         $timeout(function() {
-          localStorageService.set('hasShared', true);
+          localStorageService.set('showShareLink', false);
           $timeout(function() {
             $scope.showShareSuccess = true;
             $timeout(function() {
@@ -79,7 +80,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
   };
 
   this.showShareLink = function() {
-    return localStorageService.get('isPublisher') && !localStorageService.get('hasShared');
+    return (localStorageService.get('isPublisher') && localStorageService.get('showShareLink'));
   };
 
   ctrl.registerEvents = function() {
