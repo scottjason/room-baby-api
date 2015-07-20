@@ -5,6 +5,18 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.shared-successfuly {
+  position: absolute;
+  color: #79DFB6;
+  text-align: center;
+  left: 519px;
+  right: 0;
+  margin: auto;
+  top: 63px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
 .facebook-share-btn {
   position: absolute;
   width: 160px;
@@ -220,7 +232,6 @@ div.OT_widget-container > video {
   position: absolute;
   top: 60px;
   color: #79DFB6;
-  /*color: #7EB1DC;*/
   font-weight: 300;
   margin: auto;
   left: 0;

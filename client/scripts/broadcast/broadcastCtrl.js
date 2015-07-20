@@ -67,6 +67,12 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
       if (response && response.post_id) {
         $timeout(function() {
           localStorageService.set('hasShared', true);
+          $timeout(function() {
+            $scope.showShareSuccess = true;
+            $timeout(function() {
+              $scope.showShareSuccess = false;
+            }, 1200);
+          });
         });
       }
     });

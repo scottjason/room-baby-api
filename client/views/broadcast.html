@@ -2,10 +2,9 @@
   <div class='broadcast-navbar'>
   <p class='subscriber-count'>{{ viewers }}</p>
     <p class='broadcast-title'>Room Baby</p>
+    <p ng-show='showShareSuccess' class='shared-successfuly'>Shared!</p>
     <div class='facebook-share-btn' ng-show='broadcastCtrl.showShareLink();' ng-click='broadcastCtrl.openShareDialog();'><p>share to facebook</p></div>
-    <!-- <p ng-show='broadcastCtrl.showShareLink();'class='facebook-share' ng-click='broadcastCtrl.openShareDialog();'>share to facebook</p> -->
     <p class='time-left'>{{ timeLeft }}</p>
-
     <div class='broadcast-line'></div>
     <p class='broadcast-live'>- Broadcasting Live -</p>
   </div>
