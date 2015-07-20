@@ -2,18 +2,128 @@ html,
 body {
   background: black;
   overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  top: 16px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  color: white;
+  font-weight: 300;
+}
+
+.fa.fa-child {
+  color: white;
+  font-size: 64px;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 110px;
+  margin: auto;
+  z-index: 10;
+}
+
+.or-back-to {
+  color: #7EB1DC;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 320px;
+  text-align: center;
+  margin: auto;
+  font-size: 18px;
+  z-index: 4;
+  font-weight: 300;
+}
+
+.go-to {
+  color: #7EB1DC;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 220px;
+  text-align: center;
+  margin: auto;
+  font-size: 18px;
+  z-index: 4;
+  font-weight: 300;
+}
+
+.room-baby-btn {
+  width: 300px;
+  height: 60px;
+  background-color: transparent;
+  border-radius: 25px;
+  position: absolute;
+  top: 240px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  /*color: #7EB1DC;*/
+  border: 1px solid #7EB1DC;
+  font-size: 18px;
+  color: white;
+  font-weight: 300;
+}
+
+.facebook-btn {
+  width: 300px;
+  height: 60px;
+  background-color: transparent;
+  border-radius: 25px;
+  position: absolute;
+  top: 340px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  /*color: #7EB1DC;*/
+  text-align: center;
+  border: 1px solid #7EB1DC;
+  font-size: 18px;
+  color: white;
+  font-weight: 300;
+}
+
+.subscriber-count {
+  position: absolute;
+  color: #7EB1DC;
+  left: 0;
+  right: 579px;
+  text-align: center;
+  margin: auto;
+  top: 30px;
+  font-size: 14px;
+}
+
+.time-left {
+  color: #7EB1DC;
+  position: absolute;
+  top: 30px;
+  bottom: 0;
+  left: 530px;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
 }
 
 .facebook-share {
   color: #7EB1DC;
   position: absolute;
-  top: 30px;
+  top: 62px;
   bottom: 0;
-  left: 460px;
+  left: 530px;
   right: 0;
   margin: auto;
   text-align: center;
   cursor: pointer;
+  z-index: 5;
 }
 
 div.OT_widget-container > video {
@@ -54,16 +164,18 @@ div.OT_widget-container > video {
   color: #fff;
   cursor: pointer;
   text-decoration: none;
-  position: relative;
+  position: absolute;
   text-align: center;
-  bottom: 20px;
   font-weight: 300;
+  left: 0;
+  right: 0;
+  bottom: 5px;
 }
 
 .broadcast-line {
   position: absolute;
   top: 48px;
-  width: 600px;
+  width: 760px;
   border-bottom: 1px solid #d0314f;
   margin: auto;
   left: 0;
@@ -76,6 +188,18 @@ div.OT_widget-container > video {
   position: absolute;
   top: 60px;
   color: #7EB1DC;
+  font-weight: 300;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+.broadcast-expired {
+  font-size: 18px;
+  text-align: center;
+  position: absolute;
+  top: 60px;
+  color: #FF7F49;
   font-weight: 300;
   margin: auto;
   left: 0;

@@ -2,24 +2,17 @@
 <html>
 
 <head>
-  <title>RB Videos Api</title>
+  <title>Room Baby</title>
   <base href="/"></base>
   <meta property="og:title" content="Room Baby Broadcast" />
   <meta property="og:site_name" content="Room Baby" />
   <meta property="fb:app_id" content=<%= fbAppId %> />
   <meta property="og:url" content=<%= siteUrl %> />
   <meta property="og:image" content="https://raw.githubusercontent.com/scottjason/room-baby-videos-api/master/views/img/rb-embed-735-350.png" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,600,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link href="/styles/broadcast.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.2/angular-local-storage.min.js"></script>
-  <script src="/scripts/lib/opentok-min.js"></script>
-  <script src="/scripts/lib/opentok-layout-min.js"></script>
-  <script src="/scripts/broadcast/app.js"></script>
-  <script src="/scripts/broadcast/app.config.js"></script>
-  <script src="/scripts/broadcast/broadcastCtrl.js"></script>
-  <script src="/scripts/broadcast/broadcastApi.js"></script>
-    <script>
+  <script>
   window.fbAsyncInit = function() {
     FB.init({
       appId: '921064881267563',
@@ -44,6 +37,15 @@
 <body ng-app='Broadcast'>
   <div id="fb-root"></div>
   <div ui-view></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.2/angular-local-storage.min.js"></script>
+  <script src="/scripts/lib/opentok-min.js"></script>
+  <script src="/scripts/lib/opentok-layout-min.js"></script>
+  <script src="/scripts/broadcast/app.js"></script>
+  <script src="/scripts/broadcast/app.config.js"></script>
+  <script src="/scripts/broadcast/broadcastCtrl.js"></script>
+  <script src="/scripts/broadcast/broadcastApi.js"></script>
 </body>
 
 </html>

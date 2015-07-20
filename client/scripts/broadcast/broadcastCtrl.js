@@ -4,8 +4,8 @@ angular.module('Broadcast')
   .controller('BroadcastCtrl', BroadcastCtrl);
 
 function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastApi, localStorageService) {
-
   var ctrl = this;
+  $scope.connectionCount = 0;
 
   var broadcastContainer = document.getElementById('broadcast-container');
   var opts = {
@@ -27,6 +27,10 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
 
 
   this.initialize = function() {
+    var broadcastId = $state.params.broadcast_id;
+    if (!localStorageService.get('subscriberCount:' + broadcastId)) {
+      localStorageService.set('subscriberCount:' + broadcastId, 0);
+    }
     var broadcastId = $state.params.broadcast_id;
     console.log(broadcastId);
     BroadcastApi.get(broadcastId).then(function(response) {
@@ -51,7 +55,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
       link: $window.location.href,
       picture: 'https://raw.githubusercontent.com/scottjason/room-baby-videos-api/master/views/img/rb-embed-735-350.png',
       name: "Room Baby Broadcast",
-      description: "The description who will be displayed"
+      description: "View Live Stream Now"
     }, function(response) {
       console.log(response);
     });
@@ -59,31 +63,71 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
 
   this.showShareLink = function() {
     return localStorageService.get('isPublisher');
-  }
+  };
 
-  ctrl.registerEvents = function(session) {
-    session.on('streamCreated', function(event) {
-      var subscriberProperties = {
-        insertMode: 'replace',
-        width: "100%",
-        height: "100%"
-      };
-      var subscriber = session.subscribe(event.stream,
-        'broadcast-container',
-        subscriberProperties,
-        function(error) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log('Subscriber added.');
-          }
-        });
+  this.getSubscriberCount = function() {
+    return $scope.connectionCount;
+  };
+
+  ctrl.registerEvents = function() {
+    $scope.session.on("connectionDestroyed", function() {
+      $timeout(function() {
+        $scope.connectionCount--
+      })
     });
-  }
+
+    $scope.session.on("connectionCreated", function(event) {
+      $timeout(function() {
+        if (event.connection.creationTime < $scope.session.connection.creationTime) {
+          $scope.connectionCount++
+        } else if (event.connection.creationTime > $scope.session.connection.creationTime) {
+          $scope.connectionCount++
+        }
+      });
+    });
+
+    $scope.session.on('sessionDisconnected', function(event) {
+      console.log('sessionDisconnected', event);
+      var broadcastId = localStorageService.get('broadcast')._id;
+      BroadcastApi.remove(broadcastId).then(function(response) {
+        $timeout(function() {
+          $window.location.href = $window.location.protocol + '//' + $window.location.host  + $window.location.pathname;
+        });
+      }, function(err) {
+        $timeout(function() {
+          $window.location.href = $window.location.protocol + '//' + $window.location.host +  $window.location.pathname;
+        });
+      });
+    });
+
+    $scope.session.on('streamCreated', function(event) {
+      var isPublisher = localStorageService.get('isPublisher');
+      if (!isPublisher) {
+        var subscriberProperties = {
+          insertMode: 'replace',
+          width: "100%",
+          height: "100%"
+        };
+        var subscriber = $scope.session.subscribe(event.stream,
+          'broadcast-container',
+          subscriberProperties,
+          function(error) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Subscriber added.');
+            }
+          });
+      } else {
+        console.log('pub stream');
+      }
+    });
+  };
 
   ctrl.startBroadcast = function(broadcast) {
-    var session = OT.initSession(broadcast.key, broadcast.sessionId);
-    session.connect(broadcast.token, function(err) {
+    $scope.session = OT.initSession(broadcast.key, broadcast.sessionId);
+    ctrl.registerEvents();
+    $scope.session.connect(broadcast.token, function(err) {
       if (err) {
         console.error('error connecting: ', err.code, err.message);
       } else {
@@ -93,18 +137,46 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
         var pubElem = document.createElement('div');
         var publisher = OT.initPublisher(pubElem, pubProps, function(err) {
           if (err) console.error(err);
-          session.publish(publisher);
+          $scope.session.publish(publisher);
           broadcastContainer.appendChild(pubElem);
           layout();
+          ctrl.timeLeft();
         });
       }
     });
   };
 
+  ctrl.timeLeft = function() {
+    var broadcast = localStorageService.get('broadcast');
+    var expiresAt = (broadcast.expiresAt - 280000);
+    var currentMsUtc = new Date().getTime();
+    var msLeft = (expiresAt - currentMsUtc);
+    var secondsLeft = (msLeft / 1000);
+    var minutesLeft = (secondsLeft / 60);
+    secondsLeft = secondsLeft % 60;
+    if (minutesLeft < 0 && secondsLeft < 2) {
+      ctrl.onExpired();
+    } else {
+      var timeLeft = Math.floor(minutesLeft) + ' minutes and ' + Math.floor(secondsLeft) + ' seconds left';
+      $timeout(function() {
+        $scope.timeLeft = timeLeft;
+        $timeout(function() {
+          ctrl.timeLeft();
+        }, 1000);
+      });
+    }
+  };
+
+  ctrl.onExpired = function() {
+    $scope.session.disconnect();
+  };
+
   ctrl.joinBroadcast = function(broadcast) {
     var session = OT.initSession(broadcast.key, broadcast.sessionId);
     ctrl.registerEvents(session);
-    session.connect(broadcast.token, function(err) {});
+    session.connect(broadcast.token, function(err) {
+      ctrl.timeLeft();
+    });
   };
 
   BroadcastCtrl.$inject['$scope', '$rootScope', '$state', '$timeout', '$window', 'BroadcastApi', 'localStorageService'];

@@ -10,6 +10,13 @@ angular.module('Broadcast')
       });
       return (request.then(successHandler, errorHandler));
     }
+    function remove(broadcastId) {
+      var request = $http({
+        method: 'GET',
+        url: '/delete-broadcast/' + broadcastId
+      });
+      return (request.then(successHandler, errorHandler));
+    }
 
     function successHandler(response) {
       return (response);
@@ -21,6 +28,7 @@ angular.module('Broadcast')
 
     return ({
       get: get,
+      remove: remove,
     });
     BroadcastApi.$inject('$http');
   });
