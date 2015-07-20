@@ -60,7 +60,7 @@ function BroadcastCtrl($scope, $rootScope, $state, $timeout, $window, BroadcastA
     FB.ui({
       method: 'feed',
       link: $window.location.href,
-      picture: 'https://raw.githubusercontent.com/scottjason/room-baby-api/master/views/img/rb-embed-735-350.png',
+      picture: 'https://raw.githubusercontent.com/scottjason/room-baby-api/master/server/views/img/rb-embed-735-350.png',
       name: "Room Baby Broadcast",
       description: "View Live Stream Now"
     }, function(response) {
