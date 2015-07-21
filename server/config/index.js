@@ -26,5 +26,8 @@ module.exports = {
   aws: {
     base: 'https://s3-us-west-2.amazonaws.com/',
     bucket: 'rtc-videos/'
+  },
+  newRelic: {
+    key: process.env.NEW_RELIC_KEY || env.NEW_RELIC_KEY
   }
 };
